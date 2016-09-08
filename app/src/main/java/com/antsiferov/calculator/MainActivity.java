@@ -24,16 +24,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageButton backspaceFull, backspaceSmall;
     TextView ShowNum;
 
-    String expression = "",
-            history = "";
+    //String expression = "",
+    //        history = "";
 
     float textSize = 34;
-    boolean dotChecked = false,
-            numOrActions,
-            resultChecked = false,
-            bracketChecked = true;
+    //boolean dotChecked = false,
+    //        numOrActions,
+    //        resultChecked = false,
+    //        bracketChecked = true;
 
-    Stack<String> bracket = new Stack<>();
+    //Stack<String> bracket = new Stack<>();
+    Calculation calculation = new Calculation();
 
     private GoogleApiClient client;
 
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    private  void result() {
+    /*private  void result() {
         if (!expression.isEmpty()) {
                 if (numOrActions) {
                     //if (!bracket.isEmpty()) {
@@ -199,79 +200,93 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ShowNum.setTextSize(34);
             ShowNum.setHeight(36);
         }
-    }
+    }*/
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.num0:
-                getNum("0");
+                calculation.get("0");
+                ShowNum.setText(calculation.show_expression());
                 break;
 
             case R.id.num1:
-                getNum("1");
+                calculation.get("1");
+                ShowNum.setText(calculation.show_expression());
                 break;
 
             case R.id.num2:
-                getNum("2");
+                calculation.get("2");
+                ShowNum.setText(calculation.show_expression());
                 break;
 
             case R.id.num3:
-                getNum("3");
+                calculation.get("3");
+                ShowNum.setText(calculation.show_expression());
                 break;
 
             case R.id.num4:
-                getNum("4");
+                calculation.get("4");
+                ShowNum.setText(calculation.show_expression());
                 break;
 
             case R.id.num5:
-                getNum("5");
+                calculation.get("5");
+                ShowNum.setText(calculation.show_expression());
                 break;
 
             case R.id.num6:
-                getNum("6");
+                calculation.get("6");
+                ShowNum.setText(calculation.show_expression());
                 break;
 
             case R.id.num7:
-                getNum("7");
+                calculation.get("7");
+                ShowNum.setText(calculation.show_expression());
                 break;
 
             case R.id.num8:
-                getNum("8");
+                calculation.get("8");
+                ShowNum.setText(calculation.show_expression());
                 break;
 
             case R.id.num9:
-                getNum("9");
+                calculation.get("9");
+                ShowNum.setText(calculation.show_expression());
                 break;
 
             case R.id.dot:
-                getDot();
+                calculation.get(".");
+                ShowNum.setText(calculation.show_expression());
                 break;
 
             case R.id.plus:
-                getActions("+");
+                calculation.get("+");
+                ShowNum.setText(calculation.show_expression());
                 break;
 
             case R.id.minus:
-                getActions("-");
+                calculation.get("-");
+                ShowNum.setText(calculation.show_expression());
                 break;
 
             case R.id.times:
-                getActions("*");
+                calculation.get("*");
+                ShowNum.setText(calculation.show_expression());
                 break;
 
             case R.id.divided:
-                getActions("/");
+                calculation.get("/");
+                ShowNum.setText(calculation.show_expression());
                 break;
 
             case R.id.bracket:
-                getBracket();
+                //getBracket();
                 break;
 
             case R.id.backspaceFull:
-                expression = "";
-                bracket.clear();
+                calculation.clear_expression();
                 ShowNum.setText("");
                 break;
 
@@ -280,7 +295,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.result:
-                result();
+                calculation.result();
+                ShowNum.setText(calculation.show_expression());
                 break;
         }
     }
@@ -293,7 +309,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        /*switch (item.getItemId()) {
             case R.id.action_settings:
                 Toast.makeText(MainActivity.this, "Настройки", Toast.LENGTH_LONG).show();
                 break;
@@ -302,7 +318,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("History", history);
                 startActivity(intent);
                 break;
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 

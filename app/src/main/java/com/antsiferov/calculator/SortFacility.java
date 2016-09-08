@@ -1,9 +1,13 @@
 package com.antsiferov.calculator;
 
+import android.util.Log;
+
 import java.util.LinkedList;
 import java.lang.String;
 
 public class SortFacility {
+
+    private static final String TAG = "Sort";
 
     public boolean isOperator(char c) {
         return c == '+' || c == '-' || c == '*' || c == '/';
@@ -12,13 +16,9 @@ public class SortFacility {
     public int priority(char oper) {
         if(oper == '*' || oper == '/') {
             return 1;
-        }
-
-        else if(oper == '+' || oper == '-') {
+        } else if(oper == '+' || oper == '-') {
             return 0;
-        }
-
-        else {
+        } else {
             return -1;
         }
     }
@@ -56,25 +56,19 @@ public class SortFacility {
 
             if(c == '(') {
                 someOpers.add('(');
-            }
-
-            else if (c == ')') {
+            } else if (c == ')') {
                 while(someOpers.getLast() != '(') {
                     letGo(someInts, someOpers.removeLast());
                 }
                 someOpers.removeLast();
-            }
-
-            else if (isOperator(c)) {
+            } else if (isOperator(c)) {
                 while(!someOpers.isEmpty() &&
                         priority(someOpers.getLast()) >= priority(c)) {
                     letGo(someInts, someOpers.removeLast());
                 }
 
                 someOpers.add(c);
-            }
-
-            else {
+            } else {
                 String operand = "";
 
                 while(i < s.length() &&
@@ -82,7 +76,7 @@ public class SortFacility {
 
                     operand += s.charAt(i++);
                 }
-
+                Log.d(TAG, "operand  " + operand);
                 --i;
                 someInts.add(Double.parseDouble(operand));
             }
